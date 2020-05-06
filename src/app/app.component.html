@@ -1,0 +1,8 @@
+<div [ngClass]="{ 'container-fluid': true, 'login-container': !(isLoggedIn$ | async) } ">
+    <div class="row">
+        <app-side-navigation-menu *ngIf="isLoggedIn$ | async"></app-side-navigation-menu>
+        <div [ngClass]="{ 'col-sm-12': true, 'main-content-column': isLoggedIn$ | async }">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

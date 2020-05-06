@@ -1,0 +1,28 @@
+.button-all-none-group {
+    div {
+        display: inline-block;
+        width: 50%;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+}
+
+.scrollable-list {
+    max-height: 350px;
+    min-width: 200px;
+    max-width: 500px;
+    margin-bottom: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    .list-item-padding {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+}
+
+.bt-border {
+    border-radius: 15px;
+    border-bottom: 3px solid black;
+}

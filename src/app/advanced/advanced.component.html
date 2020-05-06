@@ -1,0 +1,64 @@
+<!-- <button class="btn btn-default" (click)="loadNewVendorInvites()">2019 emails</button> -->
+<!-- <div>{{ time | date: 'hh:mm:ss a' }}</div> -->
+<div class="row">
+    <div class="col-md-12">
+        <app-page-heading title="Advanced" subTitle=""></app-page-heading>
+    </div>
+    <div class="col-md-12 margin-top-lg">
+        <h3 *ngIf="!hideReturning">
+            <button class="btn btn-success" (click)="sendReturningVendorInvitesClick($event.target)">send returning vendor invites</button>
+            send out e-mail invites ({{maxPerHourLimit}} per hour limit)
+        </h3>
+        <h3 *ngIf="!hideReminders">
+            <button class="btn btn-success" (click)="sendRemindersClick($event.target)">send reminder invites</button>
+            send out e-mail reminder invites ({{maxPerHourLimit}} per hour limit)
+        </h3>
+        <h3 *ngIf="!hideNew">
+            <button class="btn btn-success" (click)="sendNewVendorInvitesClick($event.target)">send new vendor invites</button>
+            send out e-mail invites ({{maxPerHourLimit}} per hour limit)
+        </h3>
+        <h4>
+            <button #btnRefresh class="btn btn-info" (click)="refreshReturningVendorInviteSection()">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </button>
+            invites sent within the past hour: {{invitesSentLastHourCount}}
+        </h4>
+        <div id="invitesWithinPastHour"></div>
+        <div *ngIf="!hideReturning">
+            <h4>returning vendor invites</h4>
+            <table class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>status</th>
+                        <th>email</th>
+                        <th>business name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of returningVendorInviteList$ | async">
+                        <td>{{row.statusText}}</td>
+                        <td>{{row.email}}</td>
+                        <td>{{row.business_name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="!hideNew">
+            <h4>new vendor invites</h4>
+            <table class="table table-hover table-condensed" style="width: 50%;">
+                <thead>
+                    <tr>
+                        <th>status</th>
+                        <th>email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of newVendorInviteList$ | async">
+                        <td>{{row.statusText}}</td>
+                        <td>{{row.email}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

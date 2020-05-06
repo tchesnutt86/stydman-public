@@ -1,0 +1,18 @@
+<div class="row container-signin">
+    <div class="col-md-12">
+        <form class="form-signin" onsubmit="event.preventDefault();">
+            <div class="form-signin-logo">
+                <img class="img-thumbnail form-signin-img" src="assets/images/CWC.png">
+            </div>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" class="form-control" placeholder="username" autofocus [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+            <p *ngIf="loginStatusMessage" class="bg-danger margin-bottom-sm">{{loginStatusMessage}}</p>
+            <button
+                class="btn btn-lg btn-primary btn-block margin-top-lg"
+                type="submit"
+                (click)="loginClick()">Login</button>
+        </form>
+    </div>
+</div>

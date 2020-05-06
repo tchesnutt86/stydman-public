@@ -1,0 +1,7 @@
+<span *ngIf="!inEditMode">{{value | boolToYesNo}}</span>
+<label class="radio-inline" *ngIf="inEditMode">
+  <input type="radio" [(ngModel)]="value" [value]="true" [name]="groupName"> Yes
+</label>
+<label class="radio-inline" *ngIf="inEditMode">
+  <input type="radio" [(ngModel)]="value" [value]="false" [name]="groupName"> No
+</label>

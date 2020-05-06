@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-md-12">
+        <app-page-heading title="Reports" [subTitle]=""></app-page-heading>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-inline well well-sm">
+            <h4>Raw Reports</h4>
+            <div class="form-group">
+                <select class="form-control margin-right-xs" [(ngModel)]="selectedReportCSV">
+                    <option *ngFor="let report of reports" [value]="report.value">{{report.text}}</option>
+                </select>
+            </div>
+            <button class="btn btn-default" type="button" (click)="exportToCSV(csvDownloadLink)">Export to CSV</button>
+            <a #csvDownloadLink href="" download="" class="hidden"></a>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-inline">
+            <div class="form-group">
+                <select class="form-control margin-right-xs" (change)="reportSelectorChange($event.target.value)" [(ngModel)]="selectedReport">
+                    <option value="-1">select a report</option>
+                    <option value="0">Vendors Remaining in Same Booth</option>
+                    <option value="1">Vendor Invoices</option>
+                    <option value="2">Vendor Assigned Booths</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select *ngIf="showInvoiceReportAttendingFlagOptions" class="form-control margin-right-xs" [(ngModel)]="selectedAttendingFlag">
+                    <option *ngFor="let flag of attendingFlags" [value]="flag.id">{{flag.description}}</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" type="button" (click)="generateReportClick()">Generate</button>
+        </div>
+    </div>
+    <div class="col-md-12 margin-top-lg">
+        <div *ngIf="currentReport.type === 'simple'"></div>
+        <div *ngIf="currentReport.type === 'custom'">
+            <app-invoice-report
+                *ngIf="currentReport.name === 'invoices'"
+                [selectedAttendingFlag]="+selectedAttendingFlag"
+                [attendingFlags]="attendingFlags">
+            </app-invoice-report>
+        </div>
+        <table id="reportTable" class="table table-condensed table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th *ngFor="let header of reportTableHeaders">{{header}}</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>

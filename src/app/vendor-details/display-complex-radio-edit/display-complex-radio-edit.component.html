@@ -1,0 +1,8 @@
+<span *ngIf="!inEditMode">{{getTextFromCurrentValue()}}</span>
+<div *ngIf="inEditMode">
+  <div class="radio" *ngFor="let pair of radioValueTextList">
+    <label>
+      <input type="radio" [(ngModel)]="value" [value]="pair.value" [name]="groupName"> {{pair.text}}
+    </label>
+  </div>
+</div>

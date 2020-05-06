@@ -1,0 +1,134 @@
+<div class="row">
+    <div class="col-md-12">
+        <app-page-heading title="Invitations"></app-page-heading>
+    </div>
+</div>
+
+<div id="pageInvitations" class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Invite a vendor</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="inviteEmail">E-mail</label>
+                            <input type="email" class="form-control" placeholder="janedoe@example.com" [(ngModel)]="inviteAVendorPanel.email"
+                                spellcheck="false">
+                            <app-danger-message
+                                *ngIf="!invitePanelEmailIsValid"
+                                text="E-mail address cannot be blank">
+                            </app-danger-message>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input [(ngModel)]="inviteAVendorPanel.isNonProfitVendor" type="checkbox" (click)="nonProfitVendorCheckClicked($event.target.checked)">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Non-profit vendor
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" [(ngModel)]="inviteAVendorPanel.emailTemplate" [value]="1">
+                                Use returning vendor e-mail template
+                                <button class="btn btn-xs btn-default" (click)="previewTemplateClick(1)">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                </button>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" [(ngModel)]="inviteAVendorPanel.emailTemplate" [value]="2">
+                                Use new vendor e-mail template
+                                <button class="btn btn-xs btn-default" (click)="previewTemplateClick(2)">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                </button>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" [(ngModel)]="inviteAVendorPanel.emailTemplate" [value]="3">
+                                Use non-profit vendor e-mail template
+                                <button class="btn btn-xs btn-default" (click)="previewTemplateClick(3)">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                </button>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" [(ngModel)]="inviteAVendorPanel.emailTemplate" [value]="4">
+                                Use priority vendor e-mail template
+                                <button class="btn btn-xs btn-default" (click)="previewTemplateClick(4)">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                </button>
+                            </label>
+                        </div>
+                        <em>* If you need to fill out an application on behalf of a vendor instead of sending an
+                            invitation, click the "Get application link" button below instead of the "Send invite code"
+                            button.</em>
+                        <div>
+                            <app-save-button
+                                [savingInProgress]="gettingApplicationLinkInProgress"
+                                buttonText="Get application link"
+                                iconClass="glyphicon-link"
+                                (buttonClicked)="getApplicationLink()">
+                            </app-save-button>
+                            <div *ngIf="inviteAVendorPanel.applicationLink" class="well well-sm margin-top-sm">
+                                <a [href]="inviteAVendorPanel.applicationLink" target="_blank">{{inviteAVendorPanel.applicationLink}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer clearfix">
+                        <div class="row">
+                            <div class="col-xs-6 text-left">
+                                <span *ngIf="inviteSentMessage" class="text-success">{{inviteSentMessage}}</span>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <app-save-button
+                                    [savingInProgress]="sendingInvitationInProgress"
+                                    buttonText="Send invite code"
+                                    iconClass="glyphicon-send"
+                                    (buttonClicked)="sendInvite()">
+                                </app-save-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <app-invitations-status-table
+                    tableTitle="Pending"
+                    header1="Date sent"
+                    header2="E-mail"
+                    [tableRows]="pendingInvitations$ | async">
+                </app-invitations-status-table>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <app-invitations-status-table
+                    tableTitle="Redeemed"
+                    header1="Date redeemed"
+                    header2="E-mail"
+                    [tableRows]="redeemedInvitations$ | async">
+                </app-invitations-status-table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PREVIEW INVITE TEMPLATE MODAL -->
+<div #previewInviteTemplateModal class="modal" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Email Preview</h4>
+            </div>
+            <div class="modal-body" [innerHTML]="previewTemplateModalContent">
+            </div>
+        </div>
+    </div>
+</div>

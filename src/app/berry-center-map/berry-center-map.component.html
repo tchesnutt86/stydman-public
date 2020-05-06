@@ -1,0 +1,157 @@
+<div class="row">
+    <div class="col-md-12">
+        <app-page-heading title="Berry Center Map"></app-page-heading>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 margin-bottom-sm">
+        <h4>Filters</h4>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories: <b>{{berryCenterMapService.cacheFilterTextCategories}}</b>&nbsp;<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu allow-focus scrollable-list">
+                <li class="button-all-none-group">
+                    <div><button class="btn btn-default btn-block btn-sm" (click)="filterCategoriesAllClick()">All</button></div>
+                    <div><button class="btn btn-default btn-block btn-sm" (click)="filterCategoriesNoneClick()">None</button></div>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li *ngFor="let item of berryCenterMapService.cacheFilterCategories" class="list-item-padding">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" [value]="item.id" [checked]="item.checked" (click)="categoryClick($event.target)">
+                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                            {{item.category}}
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 bt-border">
+        <!-- Nav tabs -->
+        <ul class="nav nav-pills nav-justified margin-bottom-sm" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#tab-outside" aria-controls="tab-outside" role="tab" data-toggle="tab"
+                    (click)="setActiveTab(berryCenterMapTab.Outside)">Outside</a>
+            </li>
+            <li role="presentation">
+                <a href="#tab-hallway" aria-controls="tab-hallway" role="tab" data-toggle="tab"
+                    (click)="setActiveTab(berryCenterMapTab.Hallway)">Hallway</a>
+            </li>
+            <li role="presentation">
+                <a href="#tab-lobby" aria-controls="tab-lobby" role="tab" data-toggle="tab"
+                    (click)="setActiveTab(berryCenterMapTab.Lobby)">Lobby</a>
+            </li>
+            <li role="presentation">
+                <a href="#tab-arena" aria-controls="tab-arena" role="tab" data-toggle="tab"
+                    (click)="setActiveTab(berryCenterMapTab.Arena)">Arena</a>
+            </li>
+            <li role="presentation">
+                <a href="#tab-conference-center" aria-controls="tab-conference-center" role="tab" data-toggle="tab"
+                    (click)="setActiveTab(berryCenterMapTab.ConferenceCenter)">Conference Center</a>
+            </li>
+            <li role="presentation">
+                <a href="#tab-vestibule" aria-controls="tab-vestibule" role="tab" data-toggle="tab"
+                    (click)="setActiveTab(berryCenterMapTab.Vestibule)">Vestibule</a>
+            </li>
+            <li role="presentation">
+                <a href="#tab-upstairs-south-concourse" aria-controls="tab-upstairs-south-concourse" role="tab"
+                    data-toggle="tab" (click)="setActiveTab(berryCenterMapTab.UpstairsSouthConcourse)">Upstairs South Concourse</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 margin-top-md" style="min-width: 1305px; text-align: center; overflow-x: scroll;">
+        <app-product-category-percentage-panel
+            style="display: inline-block; margin-right: 10px; text-align: left;"
+            [productCategoryPercentages]="productCategoryPercentages$ | async"
+            [categories]="categories"
+            [currentLocationId]="activeTab">
+        </app-product-category-percentage-panel>
+        <!-- Tab panes -->
+        <div class="tab-content margin-bottom-lg" style="display: inline-block; vertical-align: top;">
+            <div *ngIf="activeTab === berryCenterMapTab.Outside" role="tabpanel" class="tab-pane active" id="tab-outside">
+                <div class="map-image-container"
+                    style="width: 960px; height: 538px; background-image: url(assets/images/map/berry-center-outside.jpg);">
+                    <app-map-spot
+                        *ngFor="let item of locationDataOutside"
+                        [qtipValues]="getQtipObject(item.booth_id)"
+                        [boothLocation]="item"
+                        [highlightOn]="highlightMapSpot(item.booth_id)">
+                    </app-map-spot>
+                </div>
+            </div>
+            <div *ngIf="activeTab === berryCenterMapTab.Hallway" role="tabpanel" class="tab-pane" id="tab-hallway">
+                <div class="map-image-container"
+                    style="width: 1000px; height: 255px; background-image: url(assets/images/map/berry-center-hallway.png);">
+                    <app-map-spot
+                        *ngFor="let item of locationDataHallway"
+                        [qtipValues]="getQtipObject(item.booth_id)"
+                        [boothLocation]="item"
+                        [highlightOn]="highlightMapSpot(item.booth_id)">
+                    </app-map-spot>
+                </div>
+            </div>
+            <div *ngIf="activeTab === berryCenterMapTab.Lobby" role="tabpanel" class="tab-pane" id="tab-lobby">
+                <div class="map-image-container"
+                    style="width: 960px; height: 344px; background-image: url(assets/images/map/berry-center-lobby.jpg);">
+                    <app-map-spot
+                        *ngFor="let item of locationDataLobby"
+                        [qtipValues]="getQtipObject(item.booth_id)"
+                        [boothLocation]="item"
+                        [highlightOn]="highlightMapSpot(item.booth_id)">
+                    </app-map-spot>
+                </div>
+            </div>
+            <div *ngIf="activeTab === berryCenterMapTab.Arena" role="tabpanel" class="tab-pane" id="tab-arena">
+                <div class="map-image-container"
+                    style="width: 1000px; height: 587px; background-image: url(assets/images/map/berry-center-arena.jpg);">
+                    <app-map-spot
+                        *ngFor="let item of locationDataArena"
+                        [qtipValues]="getQtipObject(item.booth_id)"
+                        [boothLocation]="item"
+                        [highlightOn]="highlightMapSpot(item.booth_id)">
+                    </app-map-spot>
+                </div>
+            </div>
+            <div *ngIf="activeTab === berryCenterMapTab.ConferenceCenter" role="tabpanel" class="tab-pane" id="tab-conference-center">
+                <div class="map-image-container"
+                    style="width: 852px; height: 1069px; background-image: url(assets/images/map/berry-center-conference-center.jpg);">
+                    <app-map-spot
+                        *ngFor="let item of locationDataConferenceCenter"
+                        [qtipValues]="getQtipObject(item.booth_id)"
+                        [boothLocation]="item"
+                        [highlightOn]="highlightMapSpot(item.booth_id)">
+                    </app-map-spot>
+                </div>
+            </div>
+            <div *ngIf="activeTab === berryCenterMapTab.Vestibule" role="tabpanel" class="tab-pane" id="tab-vestibule">
+                <div class="map-image-container"
+                    style="width: 960px; height: 720px; background-image: url(assets/images/map/berry-center-vestibules.jpg);">
+                    <app-map-spot
+                        *ngFor="let item of locationDataVestibules"
+                        [qtipValues]="getQtipObject(item.booth_id)"
+                        [boothLocation]="item"
+                        [highlightOn]="highlightMapSpot(item.booth_id)">
+                    </app-map-spot>
+                </div>
+            </div>
+            <div *ngIf="activeTab === berryCenterMapTab.UpstairsSouthConcourse" role="tabpanel" class="tab-pane" id="tab-upstairs-south-concourse">
+                <div class="map-image-container"
+                    style="width: 960px; height: 425px; background-image: url(assets/images/map/berry-center-upstairs-south-concourse.jpg);">
+                    <app-map-spot
+                        *ngFor="let item of locationDataUpstairsSouthConcourse"
+                        [qtipValues]="getQtipObject(item.booth_id)"
+                        [boothLocation]="item"
+                        [highlightOn]="highlightMapSpot(item.booth_id)">
+                    </app-map-spot>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

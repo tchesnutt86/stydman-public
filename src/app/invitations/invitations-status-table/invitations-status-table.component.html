@@ -1,0 +1,29 @@
+<h3>{{tableTitle}} <small>{{filteredRows().length}}</small></h3>
+<div class="row">
+    <div class="col-md-6">
+        <div class="input-group search-filter-box margin-bottom-sm">
+            <input type="text" class="form-control" placeholder="search email" [(ngModel)]="filterText"
+                spellcheck="false">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" (click)="clearFilterText()">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>
+<table class="table table-condensed table-hover">
+    <thead>
+        <th class="no-wrap">{{header1}}</th>
+        <th>{{header2}}</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of filteredRows()">
+            <td class="no-wrap">{{data.status_time | sqlTimeToCST}}</td>
+            <td>{{data.email}}</td>
+        </tr>
+        <tr *ngIf="!tableRows || !tableRows.length">
+            <td colspan="2" class="text-center">No records</td>
+        </tr>
+    </tbody>
+</table>

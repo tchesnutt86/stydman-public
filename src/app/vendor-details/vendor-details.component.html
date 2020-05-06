@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-12">
+    <app-page-heading title="Vendor Details" [subTitle]="vendorDetailsService.sharedBusinessName"></app-page-heading>
+  </div>
+</div>
+
+<!-- Nav tabs -->
+<div class="row">
+  <div class="col-md-12">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#tab-details" aria-controls="tab-details" role="tab" data-toggle="tab">Details</a>
+      </li>
+      <li role="presentation">
+        <a href="#tab-status" aria-controls="tab-status" role="tab" data-toggle="tab">Status</a>
+      </li>
+      <li role="presentation">
+        <a href="#tab-photos" aria-controls="tab-photos" role="tab" data-toggle="tab">Photos</a>
+      </li>
+      <li role="presentation">
+        <a href="#tab-notes" aria-controls="tab-notes" role="tab" data-toggle="tab">Notes</a>
+      </li>
+      <li role="presentation">
+        <a href="#tab-booth-assignment" aria-controls="tab-booth-assignment" role="tab" data-toggle="tab">Booth Assignment</a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="tab-details">
+        <app-vendor-details-details [vendorId]="vendorId"></app-vendor-details-details>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="tab-status">
+        <app-vendor-details-status
+          [vendorId]="vendorId"
+          [rawAttendingFlags]="rawAttendingFlags$ | async"
+          [attendingStatus]="attendingStatus$ | async"
+          [savingVendorStatusInProgress]="savingVendorStatusInProgress"
+          (saveVendorStatusClicked)="onSaveVendorStatusClick($event)"></app-vendor-details-status>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="tab-photos">
+        <app-vendor-details-photos [vendorId]="vendorId"></app-vendor-details-photos>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="tab-notes">
+        <app-vendor-details-notes [vendorId]="vendorId"></app-vendor-details-notes>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="tab-booth-assignment">
+        <app-vendor-details-booth-assignment [vendorId]="vendorId"></app-vendor-details-booth-assignment>
+      </div>
+    </div>
+  </div>
+</div>

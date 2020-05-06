@@ -1,0 +1,6 @@
+<span *ngIf="!inEditMode">{{getDisplayText()}}</span>
+<select *ngIf="inEditMode" class="form-control input-sm" [(ngModel)]="value">
+  <option *ngFor="let option of options" [ngValue]="valueProperty ? option[valueProperty] : option">
+    {{textProperty ? option[textProperty] : option}}
+  </option>
+</select>

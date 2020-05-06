@@ -1,0 +1,9 @@
+<button
+  #saveButton
+  *ngIf="hasWriteAccess"
+  class="btn btn-primary"
+  type="button"
+  (click)="save()"
+  data-loading-text="<div class='saving-padding'><span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span></div>">
+  <span class="glyphicon {{iconClass}} margin-right-xs" aria-hidden="true"></span>{{buttonText}}
+</button>

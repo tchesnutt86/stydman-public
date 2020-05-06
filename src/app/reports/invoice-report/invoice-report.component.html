@@ -1,0 +1,80 @@
+<div *ngIf="loading">Generating report, please wait...</div>
+<table *ngIf="!loading" class="table table-condensed table-striped table-bordered report-table">
+    <thead>
+        <tr>
+            <th>Business Name</th>
+            <th>Attending Flag</th>
+            <th>Invoice Summary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let record of tableRecords">
+            <td>{{record.businessName}}</td>
+            <td>{{record.attendingFlag.description}}</td>
+            <td>
+                <table class="table table-condensed invoice-table">
+                    <tr *ngIf="record.sponsorLevel">
+                        <td class="description">Sponsor ({{record.sponsorLevel.title}})</td>
+                        <td></td>
+                        <td class="qty-price text-right">${{record.sponsorLevel.price}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Booths</th>
+                    </tr>
+                    <tr *ngIf="!record.assignedBooths.length">
+                        <td>-</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr *ngFor="let booth of record.assignedBooths">
+                        <td class="description">
+                            <div>{{booth.number}}</div>
+                            <div *ngIf="booth.electricity" class="electricity">Electricity</div>
+                        </td>
+                        <td class="qty-price text-right"></td>
+                        <td class="qty-price">
+                            <div class="text-right">${{booth.boothPrice}}</div>
+                            <div *ngIf="booth.electricity" class="text-right">${{booth.electricityPrice}}</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Extras</th>
+                    </tr>
+                    <tr *ngIf="!record.extras.tables && !record.extras.chairs">
+                        <td>-</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr *ngIf="record.extras.tables">
+                        <td class="description">Tables</td>
+                        <td class="qty-price text-right">x {{record.extras.tables}}</td>
+                        <td class="qty-price text-right">${{record.extras.tablesPrice}}</td>
+                    </tr>
+                    <tr *ngIf="record.extras.chairs">
+                        <td class="description">Chairs</td>
+                        <td class="qty-price text-right">x {{record.extras.chairs}}</td>
+                        <td class="qty-price text-right">${{record.extras.chairsPrice}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Lunches</th>
+                    </tr>
+                    <tr *ngIf="!record.lunches.length">
+                        <td>-</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr *ngFor="let lunch of record.lunches">
+                        <td>{{lunch.name | truncateStr:40}}</td>
+                        <td class="qty-price text-right">x {{lunch.qty}}</td>
+                        <td class="qty-price text-right">${{lunch.cost}}</td>
+                    </tr>
+                    <tr class="total">
+                        <td class="description">Total</td>
+                        <td class="qty-price"></td>
+                        <td class="qty-price text-right">${{record.total}}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,11 @@
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+    aria-expanded="false">
+    <span>{{filterText}}: <b class="text-capitalize">{{selectedNameTextPair.text}} </b></span> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li *ngFor="let option of nameTextPairs">
+      <a class="cursor-pointer" [name]="option.name" (click)="filterOptionClick(option)">{{option.text}}</a>
+    </li>
+  </ul>
+</div>

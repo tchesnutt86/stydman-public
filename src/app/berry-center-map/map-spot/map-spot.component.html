@@ -1,0 +1,9 @@
+<div #spot
+    [ngClass]="{ 'booth-area-spot': true, 'booth-area-spot-highlight': true, 'booth-area-spot-vacant': !highlightOn }"
+    [style.top]="boothLocation.coord_y + 'px'"
+    [style.left]="boothLocation.coord_x + 'px'"
+    [style.width]="boothLocation.width + 'px'"
+    [style.height]="boothLocation.height + 'px'"
+    [style.background-color]="getHighlightColor()">
+    <a *ngIf="vendorId > 0" [routerLink]="getLink()"></a>
+</div>

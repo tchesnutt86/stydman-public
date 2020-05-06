@@ -1,0 +1,143 @@
+<div class="row">
+    <div class="col-md-12">
+        <app-page-heading title="Vendor Application Options" subTitle=""></app-page-heading>
+    </div>
+    <div id="boothAvailability" class="col-md-12">
+        <h3>booth availability</h3>
+        <table class="table table-hover">
+            <tr>
+                <td></td>
+                <td>Available</td>
+                <td>Electricity</td>
+                <td>Tables</td>
+                <td>Chairs</td>
+            </tr>
+            <tr>
+                <th colspan="5">Arena</th>
+            </tr>
+            <tr *ngFor="let option of arenaOptions">
+                <td>{{option.description}}</td>
+                <td>
+                    <app-material-switch [(value)]="option.is_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.electricity_is_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.tables_are_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.chairs_are_available"></app-material-switch>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="5">Conference Center</th>
+            </tr>
+            <tr *ngFor="let option of conferenceCenterOptions">
+                <td>{{option.description}}</td>
+                <td>
+                    <app-material-switch [(value)]="option.is_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.electricity_is_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.tables_are_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.chairs_are_available"></app-material-switch>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="5">Hallway</th>
+            </tr>
+            <tr *ngFor="let option of hallwayOptions">
+                <td>{{option.description}}</td>
+                <td>
+                    <app-material-switch [(value)]="option.is_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.electricity_is_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.tables_are_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.chairs_are_available"></app-material-switch>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="5">Outside</th>
+            </tr>
+            <tr *ngFor="let option of outsideOptions">
+                <td>{{option.description}}</td>
+                <td>
+                    <app-material-switch [(value)]="option.is_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.electricity_is_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.tables_are_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.chairs_are_available"></app-material-switch>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="6">Vestibule</th>
+            </tr>
+            <tr *ngFor="let option of vestibuleOptions">
+                <td>{{option.description}}</td>
+                <td>
+                    <app-material-switch [(value)]="option.is_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.electricity_is_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.tables_are_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.chairs_are_available"></app-material-switch>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="6">Upstairs - South Concourse</th>
+            </tr>
+            <tr *ngFor="let option of upstairsSouthConcourse">
+                <td>{{option.description}}</td>
+                <td>
+                    <app-material-switch [(value)]="option.is_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.electricity_is_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.tables_are_available"></app-material-switch>
+                </td>
+                <td>
+                    <app-material-switch [(value)]="option.chairs_are_available"></app-material-switch>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="rules" class="col-md-12">
+        <h3>rules</h3>
+        <h4>misc</h4>
+        <div id="misc">
+            <app-material-checkbox
+                *ngFor="let appOption of applicationOptions"
+                [(value)]="appOption.enabled"
+                [text]="appOption.option_description">
+            </app-material-checkbox>
+        </div>
+    </div>
+    <div id="updateButtonSection" class="col-md-12 margin-top-xxl margin-bottom-xxl text-center">
+        <app-save-button
+            buttonText="Save"
+            [savingInProgress]="savingOptionsInProgress"
+            (buttonClicked)="saveOptions()">
+        </app-save-button>
+    </div>
+</div>

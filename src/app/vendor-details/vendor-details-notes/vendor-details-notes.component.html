@@ -1,0 +1,28 @@
+<div class="row margin-top-lg">
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="cwcNotes">Add a note</label>
+      <textarea id="cwcNotes" class="form-control" rows="6" [(ngModel)]="cwcNoteText"></textarea>
+    </div>
+    <div class="pull-right">
+      <app-save-button
+        buttonText="Add"
+        [savingInProgress]="addingNoteInProgress"
+        (buttonClicked)="addNote()">
+      </app-save-button>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <h4 class="left-border-sub-heading">History</h4>
+    <table class="table table-condensed table-striped table-hover">
+      <tbody>
+        <tr *ngFor="let cwcNote of rawCwcVendorNotes">
+          <td>
+            <h5>{{cwcNote.create_time | sqlTimeToCST}}</h5>
+            <div style="white-space: pre-wrap">{{cwcNote.note}}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

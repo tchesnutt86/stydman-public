@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+    <table class="table table-condensed product-percent-tbl">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th class="text-center">
+                    <span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>
+                </th>
+                <th class="text-center">
+                    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pc of catgoriesAndWholePercentages">
+                <td>{{pc.category}}</td>
+                <td class="text-center">{{pc.forArea === 0 ? '-' : (pc.forArea | number:'1.1-1') + '%'}}</td>
+                <td class="text-center">{{pc.whole === 0 ? '-' : (pc.whole | number:'1.1-1') + '%'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

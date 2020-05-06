@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-12">
+        <h4>
+            <span class="left-border-sub-heading">Photos </span>
+            <app-standard-button-with-permissions
+                iconClass="glyphicon-plus"
+                (buttonClicked)="addPhotoClick()">
+            </app-standard-button-with-permissions>
+            <div style="display: none;">
+                <input #photoSelector type="file" (change)="photoSelectorChange($event.target)">
+            </div>
+            <span *ngIf="addPhotoErrorMessageEnabled">
+                Incorrect photo file type. Please try again.
+            </span>
+        </h4>
+        <div class="row">
+            <div class="col-md-12" *ngIf="!rawVendorFileInfo.length">
+                <i>No photos to display</i>
+            </div>
+            <div class="col-md-6 center-text padding-little" *ngFor="let fileInfo of rawVendorFileInfo">
+                <div class="vendor-img-wrapper">
+                    <img class="img-responsive box-shadow center-margin-horizontal"
+                        src="{{'http://styd-application.cyfairwomensclub.org/' + fileInfo.server_path}}" />
+                    <app-standard-button-with-permissions
+                        iconClass="glyphicon-remove"
+                        btnClasses="btn btn-danger btn-xs vendor-img-close-btn"
+                        (buttonClicked)="deletePhotoClick(fileInfo.id, fileInfo.name)">
+                    </app-standard-button-with-permissions>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- UPLOADING MODAL -->
+<div #uploadingModal class="modal" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="center-text">
+                    <h4>Uploading file, please wait...</h4>
+                    <br>
+                    <span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-md-12">
+        <app-page-heading title="Vendors" subTitle=""></app-page-heading>
+    </div>
+
+    <div class="col-md-12 margin-bottom-sm">
+        <h4>Filters</h4>
+        <span class="margin-right-xs">
+            <app-simple-table-filter filterText="Booth Status" [nameTextPairs]="filterBoothStatusOptions"
+                (filterChanged)="filterBoothStatusChanged($event)">
+            </app-simple-table-filter>
+        </span>
+        <span class="margin-right-xs">
+            <app-simple-table-filter filterText="Vendor Status" [nameTextPairs]="filterAttendingFlagOptions | async"
+                (filterChanged)="filterAttendingFlagChanged($event)">
+            </app-simple-table-filter>
+        </span>
+        <span class="margin-right-xs">
+            <app-simple-table-filter filterText="Application Status" [nameTextPairs]="filterApplicationStatusOptions"
+                (filterChanged)="filterApplicationStatusChanged($event)">
+            </app-simple-table-filter>
+        </span>
+        <div class="input-group search-filter-box margin-top-sm">
+            <input type="text" class="form-control" placeholder="search id, name and email" [(ngModel)]="filterText"
+                spellcheck="false" (keyup)="runThroughAllFilters()">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" (click)="clearFilterText()">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Booth Assignment</th>
+                    <th>Vendor ID</th>
+                    <th>Business Name</th>
+                    <th>Email</th>
+                    <th>Vendor Status</th>
+                    <th>Invite Sent</th>
+                    <th>Invite Redeemed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let record of vendorList">
+                    <td>
+                        <div class="booth-assignment-number" *ngFor="let booth of record.booths">{{booth}}</div>
+                    </td>
+                    <td>{{record.id}}</td>
+                    <td>
+                        <a routerLink="/vendor-details/{{record.id}}">{{record.businessName}}</a>
+                    </td>
+                    <td>{{record.email}}</td>
+                    <td>{{record.attendingFlagDescription || ''}}</td>
+                    <td>{{record.inviteCreateTime | sqlTimeToCST}}</td>
+                    <td>{{record.inviteUpdateTime | sqlTimeToCST}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

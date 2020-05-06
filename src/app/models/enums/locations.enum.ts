@@ -1,0 +1,9 @@
+export enum Locations {
+  ARENA = 1,
+  HALLWAY = 2,
+  LOBBY = 3,
+  OUTSIDE = 4,
+  CONFERENCE_CENTER = 5,
+  VESTIBULE = 6,
+  UPSTAIRS_SOUTH_CONCOURSE = 7,
+}

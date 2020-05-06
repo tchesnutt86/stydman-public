@@ -1,0 +1,534 @@
+<div class="row margin-top-xxl">
+    <div class="col-md-6">
+        <div class="panel panel-card">
+            <div class="panel-heading">
+                <table class="table v-align-middle table-no-border table-heading">
+                    <tr>
+                        <td>
+                            <h4 class="left-border-sub-heading margin-top-xs margin-bottom-xs">VENDOR INFO</h4>
+                        </td>
+                        <td class="text-right">
+                            <app-edit-save-button [savingInProgress]="vendorInfoSavingInProgress"
+                                (editClicked)="vendorInfoEditClick()" (saveClicked)="vendorInfoSaveClick()">
+                            </app-edit-save-button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-no-wrap-headers table-hover v-align-middle headers-50">
+                    <tr>
+                        <th>Business name</th>
+                        <td>
+                            <app-display-input-edit [(value)]="vendorInfoTable.businessName"
+                                [inEditMode]="inVendorInfoEditMode"></app-display-input-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>First name</th>
+                        <td>
+                            <app-display-input-edit [(value)]="vendorInfoTable.firstName"
+                                [inEditMode]="inVendorInfoEditMode"></app-display-input-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Last name</th>
+                        <td>
+                            <app-display-input-edit [(value)]="vendorInfoTable.lastName"
+                                [inEditMode]="inVendorInfoEditMode"></app-display-input-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>
+                            <app-display-input-edit [(value)]="vendorInfoTable.address"
+                                [inEditMode]="inVendorInfoEditMode"></app-display-input-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>
+                            <app-display-input-edit [(value)]="vendorInfoTable.city"
+                                [inEditMode]="inVendorInfoEditMode"></app-display-input-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Zip</th>
+                        <td>
+                            <app-display-input-edit [(value)]="vendorInfoTable.zip"
+                                [inEditMode]="inVendorInfoEditMode"></app-display-input-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>
+                            <app-display-input-edit [(value)]="vendorInfoTable.email"
+                                [inEditMode]="inVendorInfoEditMode"></app-display-input-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Secondary Email</th>
+                        <td>
+                            <app-display-input-edit [(value)]="vendorInfoTable.secondaryEmail"
+                                [inEditMode]="inVendorInfoEditMode"></app-display-input-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Primary phone</th>
+                        <td>
+                            <app-display-input-edit [(value)]="vendorInfoTable.primaryPhone"
+                                [inEditMode]="inVendorInfoEditMode" pipe="phoneNumber"></app-display-input-edit>
+                            <app-danger-message *ngIf="!vendorInfoTablePrimaryPhoneIsValid"
+                                text="Numbers only and must be 10 digits">
+                            </app-danger-message>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Secondary phone</th>
+                        <td>
+                            <app-display-input-edit [(value)]="vendorInfoTable.secondaryPhone"
+                                [inEditMode]="inVendorInfoEditMode" pipe="phoneNumber"></app-display-input-edit>
+                            <app-danger-message *ngIf="!vendorInfoTableSecondaryPhoneIsValid"
+                                text="Numbers only and must be 10 digits">
+                            </app-danger-message>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Website</th>
+                        <td>
+                            <app-display-input-edit [(value)]="vendorInfoTable.website"
+                                [inEditMode]="inVendorInfoEditMode"></app-display-input-edit>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-card">
+            <div class="panel-heading">
+                <table class="table v-align-middle table-no-border table-heading">
+                    <tr>
+                        <td>
+                            <h4 class="left-border-sub-heading">BUSINESS AND BOOTH INFO</h4>
+                        </td>
+                        <td class="text-right">
+                            <app-edit-save-button
+                                [savingInProgress]="businessAndBoothInfoSavingInProgress"
+                                (editClicked)="businessAndBoothInfoEditClick()"
+                                (saveClicked)="businessAndBoothInfoSaveClick()">
+                            </app-edit-save-button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-no-wrap-headers table-hover v-align-middle headers-50">
+                    <tr>
+                        <th>Texas sales tax permit ID</th>
+                        <td>
+                            <app-display-input-edit [(value)]="businessAndBoothInfoTable.texasSalesTaxPermitId"
+                                [inEditMode]="inBusinessAndBoothInfoEditMode"
+                                groupName="texasSalesTaxPermitGrp">
+                            </app-display-input-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Inventory changed</th>
+                        <td>
+                            <app-display-radio-edit [(value)]="businessAndBoothInfoTable.inventoryChanged"
+                                [inEditMode]="inBusinessAndBoothInfoEditMode" groupName="inventoryChangedGrp">
+                            </app-display-radio-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Inventory changed comments</th>
+                        <td>
+                            <span *ngIf="!inBusinessAndBoothInfoEditMode"
+                                style="white-space: pre-wrap;">{{businessAndBoothInfoTable.inventoryChangedComments}}</span>
+                            <textarea *ngIf="inBusinessAndBoothInfoEditMode"
+                                [(ngModel)]="businessAndBoothInfoTable.inventoryChangedComments" class="form-control" rows="5">
+                            </textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Remain in same booth</th>
+                        <td>
+                            <app-display-radio-edit [(value)]="businessAndBoothInfoTable.remainInSameBooth"
+                                [inEditMode]="inBusinessAndBoothInfoEditMode" groupName="remainSameBoothGrp">
+                            </app-display-radio-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Direct marketing</th>
+                        <td>
+                            <app-display-radio-edit [(value)]="businessAndBoothInfoTable.directMarketing"
+                                [inEditMode]="inBusinessAndBoothInfoEditMode" groupName="directMarketingGrp">
+                            </app-display-radio-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Food samples</th>
+                        <td>
+                            <app-display-radio-edit [(value)]="businessAndBoothInfoTable.foodSamples"
+                                [inEditMode]="inBusinessAndBoothInfoEditMode" groupName="foodSamplesGrp">
+                            </app-display-radio-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Tables</th>
+                        <td>
+                            <app-display-select-edit
+                                [options]="zeroThruFiveArray"
+                                [(value)]="businessAndBoothInfoTable.tables"
+                                [inEditMode]="inBusinessAndBoothInfoEditMode">
+                            </app-display-select-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Chairs</th>
+                        <td>
+                            <app-display-select-edit
+                                [options]="zeroThruFiveArray"
+                                [(value)]="businessAndBoothInfoTable.chairs"
+                                [inEditMode]="inBusinessAndBoothInfoEditMode">
+                            </app-display-select-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Premium lobby</th>
+                        <td>
+                            <app-display-radio-edit [(value)]="businessAndBoothInfoTable.premiumLobby"
+                                [inEditMode]="inBusinessAndBoothInfoEditMode" groupName="premiumLobbyGrp">
+                            </app-display-radio-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Willing to accept outside booth</th>
+                        <td>
+                            <app-display-radio-edit
+                                [(value)]="businessAndBoothInfoTable.willingToAcceptOutsideBooth"
+                                [inEditMode]="inBusinessAndBoothInfoEditMode" groupName="acceptOutsideBoothGrp">
+                            </app-display-radio-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Willing to accept last minute booth</th>
+                        <td>
+                            <app-display-radio-edit
+                                [(value)]="businessAndBoothInfoTable.willingToAcceptLastMinuteBooth"
+                                [inEditMode]="inBusinessAndBoothInfoEditMode"
+                                groupName="acceptLastMinuteBoothGrp">
+                            </app-display-radio-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Interested in sponsoring</th>
+                        <td>
+                            <app-display-complex-radio-edit
+                                [(value)]="businessAndBoothInfoTable.interestedInSponsoring"
+                                [radioValueTextList]="interestedInSponsoringValueTextList"
+                                [inEditMode]="inBusinessAndBoothInfoEditMode"
+                                groupName="interestedInSponsoringGrp">
+                            </app-display-complex-radio-edit>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Comments</th>
+                        <td>
+                            <span *ngIf="!inBusinessAndBoothInfoEditMode"
+                                style="white-space: pre-wrap;">{{businessAndBoothInfoTable.comments}}</span>
+                            <textarea *ngIf="inBusinessAndBoothInfoEditMode"
+                                [(ngModel)]="businessAndBoothInfoTable.comments" class="form-control" rows="5">
+                            </textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-card">
+            <div class="panel-heading">
+                <table class="table v-align-middle table-no-border table-heading">
+                    <tr>
+                        <td>
+                            <h4 class="left-border-sub-heading">PRODUCTS</h4>
+                        </td>
+                        <td class="text-right" *ngIf="hasWriteAccess">
+                            <button *ngIf="inProductsEditMode && !productsSavingInProgress" class="btn btn-sm btn-danger margin-right-xs" (click)="cancelEditProductsClick()">
+                                <span class="glyphicon glyphicon-ban-circle margin-right-xs" aria-hidden="true"></span>cancel
+                            </button>
+                            <button *ngIf="inProductsEditMode && !productsSavingInProgress" class="btn btn-sm btn-info margin-right-xs" (click)="addProductClick()">
+                                <span class="glyphicon glyphicon-plus margin-right-xs" aria-hidden="true"></span>add product
+                            </button>
+                            <button
+                                class="btn btn-sm btn-primary"
+                                type="button"
+                                (click)="editSaveProductsClick(inProductsEditMode)"
+                                [disabled]="productsSavingInProgress">
+                                <span *ngIf="!inProductsEditMode && !productsSavingInProgress">
+                                    <span class="glyphicon glyphicon-pencil margin-right-xs" aria-hidden="true"></span>edit
+                                </span>
+                                <span *ngIf="inProductsEditMode && !productsSavingInProgress">
+                                    <span class="glyphicon glyphicon-floppy-disk margin-right-xs" aria-hidden="true"></span>save
+                                </span>
+                                <span *ngIf="productsSavingInProgress">saving...</span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed v-align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Category</th>
+                            <th>Description</th>
+                            <th style="width: 10%;">%</th>
+                            <th style="width: 5%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of rawProducts">
+                            <td>
+                                <app-display-select-edit
+                                    [options]="rawProductCategories"
+                                    [(value)]="product.product_category_id"
+                                    valueProperty="id"
+                                    textProperty="category"
+                                    [inEditMode]="inProductsEditMode">
+                                </app-display-select-edit>
+                            </td>
+                            <td>
+                                <app-display-input-edit
+                                    [(value)]="product.description"
+                                    [inEditMode]="inProductsEditMode">
+                                </app-display-input-edit>
+                            </td>
+                            <td>
+                                <app-display-input-edit
+                                    [(value)]="product.percentage"
+                                    [inEditMode]="inProductsEditMode"
+                                    castToNumber="true">
+                                </app-display-input-edit>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-info" *ngIf="inProductsEditMode" (click)="removeProduct(product)">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="inProductsEditMode">
+                            <td></td>
+                            <td class="text-danger danger-msg">
+                                <span [ngClass]="{ 'hidden': getTotalProductsPercent() === 100, 'margin-right-sm': true }">Products must add up to 100%.</span>
+                                <span [ngClass]="{ 'hidden': !duplicateProductCategoriesExist() }">Cannot have duplicate product categories.</span>
+                            </td>
+                            <td>Total: {{getTotalProductsPercent() + '%'}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-card">
+            <div class="panel-heading">
+                <table class="table v-align-middle table-no-border table-heading">
+                    <tr>
+                        <td>
+                            <h4 class="left-border-sub-heading">BOOTH LOCATION PREFERENCES</h4>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Description</th>
+                            <th>Electricity</th>
+                            <th>Next to booth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td *ngIf="!rawBoothLocationPreferences.length" colspan="4" class="text-center">No booth
+                                preferences.</td>
+                        </tr>
+                        <tr *ngFor="let pref of rawBoothLocationPreferences">
+                            <td>{{pref.location1 || pref.location2}}</td>
+                            <td>{{pref.description || pref.booth_number}}</td>
+                            <td>{{pref.electricity | boolToYesNo}}</td>
+                            <td>{{pref.next_to_booth || '-'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-card">
+            <div class="panel-heading">
+                <h4 class="left-border-sub-heading">ASSIGNED BOOTHS</h4>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-hover">
+                    <tr>
+                        <th></th>
+                        <th>Location</th>
+                        <th>Number</th>
+                        <th>Electricity</th>
+                    </tr>
+                    <tr>
+                        <th>Booth 1</th>
+                        <td>{{vendorDetailsService.sharedBoothAssignments.boothAssignment1.locationName || '-'}}</td>
+                        <td>{{vendorDetailsService.sharedBoothAssignments.boothAssignment1.boothNumber || '-'}}</td>
+                        <td>{{vendorDetailsService.sharedBoothAssignments.boothAssignment1.electricity | boolToYesNo}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Booth 2</th>
+                        <td>{{vendorDetailsService.sharedBoothAssignments.boothAssignment2.locationName || '-'}}</td>
+                        <td>{{vendorDetailsService.sharedBoothAssignments.boothAssignment2.boothNumber || '-'}}</td>
+                        <td>{{vendorDetailsService.sharedBoothAssignments.boothAssignment2.electricity | boolToYesNo}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Booth 3</th>
+                        <td>{{vendorDetailsService.sharedBoothAssignments.boothAssignment3.locationName || '-'}}</td>
+                        <td>{{vendorDetailsService.sharedBoothAssignments.boothAssignment3.boothNumber || '-'}}</td>
+                        <td>{{vendorDetailsService.sharedBoothAssignments.boothAssignment3.electricity | boolToYesNo}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Booth 4</th>
+                        <td>{{vendorDetailsService.sharedBoothAssignments.boothAssignment4.locationName || '-'}}</td>
+                        <td>{{vendorDetailsService.sharedBoothAssignments.boothAssignment4.boothNumber || '-'}}</td>
+                        <td>{{vendorDetailsService.sharedBoothAssignments.boothAssignment4.electricity | boolToYesNo}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-card">
+            <div class="panel-heading">
+                <table class="table v-align-middle table-no-border table-heading">
+                    <tr>
+                        <td>
+                            <h4 class="left-border-sub-heading">LUNCHES</h4>
+                        </td>
+                        <td class="text-right">
+                            <app-standard-button-with-permissions
+                                buttonText="add lunch"
+                                iconClass="glyphicon-plus"
+                                (buttonClicked)="addLunchClick()">
+                            </app-standard-button-with-permissions>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-hover v-align-middle">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th style="width: 10%;">Qty</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="!vendorLunchesTable.rows.length">
+                            <td colspan="4" class="text-center">No lunches.</td>
+                        </tr>
+                        <tr *ngFor="let row of vendorLunchesTable.rows" class="show-icon-on-hover">
+                            <td>{{row.lunchType}}</td>
+                            <td>{{row.lunchDescription}}</td>
+                            <td>{{row.quantity}}</td>
+                            <td>
+                                <span class="glyphicon glyphicon-remove pointer-hover remove-lunch color-red"
+                                    (click)="removeLunch(row.lunchId)"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONFIRM REMOVE LUNCH MODAL -->
+<div #removeLunchConfirmModal class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Remove Lunch</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to remove this lunch?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                    (click)="removeLunchConfirmClicked()">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ADD LUNCH MODAL -->
+<div #addLunchModal class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Add Lunch</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>Type</label>
+                        <select class="form-control" (change)="lunchTypeChange($event.target.value)">
+                            <option *ngFor="let item of lunchTypes" [value]="item.value">{{item.text}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label>Item</label>
+                        <select class="form-control" [(ngModel)]="addLunchModalSelectedLunchId">
+                            <option *ngFor="let item of lunches" [value]="item.value">{{item.text}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label>Quantity</label>
+                        <select class="form-control" [(ngModel)]="addLunchModalSelectedQuantity">
+                            <option *ngFor="let num of [1, 2, 3, 4, 5]" [value]="num">{{num}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default margin-right-xs" data-dismiss="modal">Cancel</button>
+                <app-save-button buttonText="Add" iconClass="glyphicon-plus"
+                    [savingInProgress]="addingLunchInProgress" (buttonClicked)="confirmAddLunch()">
+                </app-save-button>
+            </div>
+        </div>
+    </div>
+</div>

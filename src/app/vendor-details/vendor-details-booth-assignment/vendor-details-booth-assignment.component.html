@@ -1,0 +1,117 @@
+<table class="table margin-top-lg">
+  <thead>
+    <tr>
+      <th>Assigned booth #1</th>
+      <th>Assigned booth #2</th>
+      <th>Assigned booth #3</th>
+      <th>Assigned booth #4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="form-group">
+        <label>Location</label>
+        <select class="form-control" [(ngModel)]="boothAssignmentDropdown1.selectedLocationId"
+          (change)="boothLocationDropdownChange(1, $event.target.value, electricity1)">
+          <option *ngFor="let location of locations" [value]="location.id">{{location.name}}</option>
+        </select>
+      </td>
+      <td class="form-group">
+        <label>Location</label>
+        <select class="form-control" [(ngModel)]="boothAssignmentDropdown2.selectedLocationId"
+          (change)="boothLocationDropdownChange(2, $event.target.value, electricity2)">
+          <option *ngFor="let location of locations" [value]="location.id">{{location.name}}</option>
+        </select>
+      </td>
+      <td class="form-group">
+        <label>Location</label>
+        <select class="form-control" [(ngModel)]="boothAssignmentDropdown3.selectedLocationId"
+          (change)="boothLocationDropdownChange(3, $event.target.value, electricity3)">
+          <option *ngFor="let location of locations" [value]="location.id">{{location.name}}</option>
+        </select>
+      </td>
+      <td class="form-group">
+        <label>Location</label>
+        <select class="form-control" [(ngModel)]="boothAssignmentDropdown4.selectedLocationId"
+          (change)="boothLocationDropdownChange(4, $event.target.value, electricity4)">
+          <option *ngFor="let location of locations" [value]="location.id">{{location.name}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="form-group">
+        <label>Booth number</label>
+        <select class="form-control" [(ngModel)]="boothAssignmentDropdown1.selectedBoothId" [disabled]="selectedBoothDropdownOrElectricityDisable(1)">
+          <option *ngFor="let booth of getBoothOptionsForDropdownNumber(1)" [value]="booth.booth_id">{{booth.booth_number}}</option>
+        </select>
+      </td>
+      <td class="form-group">
+        <label>Booth number</label>
+        <select class="form-control" [(ngModel)]="boothAssignmentDropdown2.selectedBoothId" [disabled]="selectedBoothDropdownOrElectricityDisable(2)">
+          <option *ngFor="let booth of getBoothOptionsForDropdownNumber(2)" [value]="booth.booth_id">{{booth.booth_number}}</option>
+        </select>
+      </td>
+      <td class="form-group">
+        <label>Booth number</label>
+        <select class="form-control" [(ngModel)]="boothAssignmentDropdown3.selectedBoothId" [disabled]="selectedBoothDropdownOrElectricityDisable(3)">
+          <option *ngFor="let booth of getBoothOptionsForDropdownNumber(3)" [value]="booth.booth_id">{{booth.booth_number}}</option>
+        </select>
+      </td>
+      <td class="form-group">
+        <label>Booth number</label>
+        <select class="form-control" [(ngModel)]="boothAssignmentDropdown4.selectedBoothId" [disabled]="selectedBoothDropdownOrElectricityDisable(4)">
+          <option *ngFor="let booth of getBoothOptionsForDropdownNumber(4)" [value]="booth.booth_id">{{booth.booth_number}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="checkbox">
+          <label>
+            <input #electricity1 type="checkbox" [(ngModel)]="boothAssignmentDropdown1.electricity" [disabled]="selectedBoothDropdownOrElectricityDisable(1)">
+            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+            Electricity
+          </label>
+        </div>
+      </td>
+      <td>
+        <div class="checkbox">
+          <label>
+            <input #electricity2 type="checkbox" [(ngModel)]="boothAssignmentDropdown2.electricity" [disabled]="selectedBoothDropdownOrElectricityDisable(2)">
+            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+            Electricity
+          </label>
+        </div>
+      </td>
+      <td>
+        <div class="checkbox">
+          <label>
+            <input #electricity3 type="checkbox" [(ngModel)]="boothAssignmentDropdown3.electricity" [disabled]="selectedBoothDropdownOrElectricityDisable(3)">
+            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+            Electricity
+          </label>
+        </div>
+      </td>
+      <td>
+        <div class="checkbox">
+          <label>
+            <input #electricity4 type="checkbox" [(ngModel)]="boothAssignmentDropdown4.electricity" [disabled]="selectedBoothDropdownOrElectricityDisable(4)">
+            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+            Electricity
+          </label>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="row clearfix">
+  <div class="col-md-12 text-right">
+    <span *ngIf="savedBoothAssignmentsMessageActive">
+      <span class="glyphicon glyphicon-ok-sign margin-right-xs color-green" aria-hidden="true"></span> Successfully saved booth assignments 
+    </span>
+    <app-save-button
+      [savingInProgress]="savingBoothAssignmentsInProgress"
+      (buttonClicked)="saveBoothAssignments()">
+    </app-save-button>
+  </div>
+</div>

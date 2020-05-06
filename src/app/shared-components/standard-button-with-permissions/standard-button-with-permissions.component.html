@@ -1,0 +1,7 @@
+<button
+  *ngIf="hasWriteAccess"
+  [class]="btnClasses || 'btn btn-primary'"
+  type="button"
+  (click)="clicked()">
+  <span class="glyphicon {{iconClass}}" aria-hidden="true"></span>{{buttonText ? ' ' + buttonText : ''}}
+</button>

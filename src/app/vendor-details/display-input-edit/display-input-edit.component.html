@@ -1,0 +1,4 @@
+<span *ngIf="!inEditMode && !pipe">{{value}}</span>
+<span *ngIf="!inEditMode && pipe === 'phoneNumber'">{{value | phoneNumber}}</span>
+<span *ngIf="!inEditMode && pipe === 'boolToYesNo'">{{value | boolToYesNo}}</span>
+<input *ngIf="inEditMode" type="text" class="form-control input-sm" [(ngModel)]="value">

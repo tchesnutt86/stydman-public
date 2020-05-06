@@ -1,0 +1,19 @@
+<div class="navbar-fixed-left">
+    <a id="styd-logo" class="navbar-brand custom-navbar-brand" routerLink="">
+        <div class="color-light-grey">styd</div>
+        <div class="color-light-grey">management</div>
+        <div class="color-light-grey">system</div>
+    </a>
+    <ul class="nav navbar-nav main-ul">
+        <li><hr class="divider"></li>
+        <li class="section-title"><span>Manage</span></li>
+        <li><a routerLink="/vendors"><span class="glyphicon glyphicon-user margin-right-xs" aria-hidden="true"></span>VENDORS</a></li>
+        <li><a routerLink="/berry-center-map"><span class="glyphicon glyphicon-globe margin-right-xs" aria-hidden="true"></span>BERRY CENTER MAP</a></li>
+        <li class="section-title"><span>Vendor Application</span></li>
+        <li><a routerLink="/vendor-application-options"><span class="glyphicon glyphicon-th-list margin-right-xs" aria-hidden="true"></span>OPTIONS</a></li>
+        <li class="section-title"><span>Tools</span></li>
+        <li><a routerLink="/invitations"><span class="glyphicon glyphicon-envelope margin-right-xs" aria-hidden="true"></span>INVITATIONS</a></li>
+        <li><a routerLink="/reports"><span class="glyphicon glyphicon-list-alt margin-right-xs" aria-hidden="true"></span>REPORTS</a></li>
+        <li *ngIf="currentUserService.getPermissions().menuAdvanced"><a routerLink="/advanced"><span class="glyphicon glyphicon-list-alt margin-right-xs" aria-hidden="true"></span>ADVANCED</a></li>
+    </ul>
+</div>

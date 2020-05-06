@@ -1,0 +1,1033 @@
+// Spacing 
+$xs: 5px;
+$sm: 10px;
+$md: 15px;
+$lg: 20px;
+$xl: 25px;
+$xxl: 30px;
+
+/* START: Bootstrap css override */
+
+html,
+body {
+	min-height: 100%;
+	height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+}
+
+body {
+    background-color: #fafafa;
+}
+
+label {
+    font-weight: normal;
+}
+
+label > small {
+    font-style: italic;
+    color: #888888;
+}
+
+.custom-navbar-brand {
+    height: auto;
+    width: 100%;
+    font-size: 1.5em;
+    cursor: pointer;
+    line-height: 1.2em;
+    color: #eee;
+    font-weight: 500;
+}
+
+.glyphicon-refresh-animate {
+    animation: spin .9s infinite linear;
+    -webkit-animation: spin2 .9s infinite linear;
+}
+
+@keyframes spin2 {
+    from { transform: rotate(0deg);}
+    to { transform: rotate(360deg);}
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+.modal-lg {
+    width: 935px;
+}
+
+#berryCenterMapModal .modal-body {
+    background-color: darkgrey;
+}
+
+#selectBoothSizeModal tbody > tr {
+    cursor: pointer;
+}
+
+.is-table-row {
+    display: table;
+}
+.is-table-row [class*="col-md"] {
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+    min-width: 50%;
+}
+
+.checkbox label:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.checkbox .cr {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.3em;
+    height: 1.3em;
+    float: left;
+    margin-right: .5em;
+    margin-left: -20px;
+    background-color: #FFF;
+}
+
+.checkbox .cr .cr-icon {
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 50%;
+    left: 20%;
+}
+
+.checkbox label input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon {
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon {
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr {
+    opacity: .5;
+}
+
+/* turn checkbox into a toggle switch style */
+.material-switch > input[type="checkbox"] {
+    display: none;   
+}
+
+.material-switch > label {
+    cursor: pointer;
+    height: 0px;
+    position: relative; 
+    width: 40px;  
+}
+
+.material-switch > label::before {
+    background: rgb(255, 0, 0);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    content: '';
+    height: 16px;
+    margin-top: -8px;
+    position:absolute;
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+    width: 40px;
+}
+
+.material-switch > label::after {
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    content: '';
+    height: 24px;
+    left: -4px;
+    margin-top: -8px;
+    position: absolute;
+    top: -4px;
+    transition: all 0.3s ease-in-out;
+    width: 24px;
+}
+
+.material-switch > input[type="checkbox"]:checked + label::before {
+    background: rgb(0, 255, 0);
+    opacity: 0.5;
+}
+
+.material-switch > input[type="checkbox"]:checked + label::after {
+    background: rgb(255, 255, 255);
+    left: 20px;
+}
+
+/* END: Bootstrap css override */
+
+.pad {
+    &-top {
+        &-none {
+            padding-top: 0;
+        }
+
+        &-xs {
+            padding-top: $xs;
+        }
+
+        &-sm {
+            padding-top: $sm;
+        }
+
+        &-md {
+            padding-top: $md;
+        }
+
+        &-lg {
+            padding-top: $lg;
+        }
+
+        &-xl {
+            padding-top: $xl;
+        }
+
+        &-xxl {
+            padding-top: $xxl;
+        }
+    }
+
+    &-right {
+        &-none {
+            padding-right: 0;
+        }
+
+        &-xs {
+            padding-right: $xs;
+        }
+
+        &-sm {
+            padding-right: $sm;
+        }
+
+        &-md {
+            padding-right: $md;
+        }
+
+        &-lg {
+            padding-right: $lg;
+        }
+
+        &-xl {
+            padding-right: $xl;
+        }
+
+        &-xxl {
+            padding-right: $xxl;
+        }
+    }
+
+    &-bottom {
+        &-none {
+            padding-bottom: 0;
+        }
+
+        &-xs {
+            padding-bottom: $xs;
+        }
+
+        &-sm {
+            padding-bottom: $sm;
+        }
+
+        &-md {
+            padding-bottom: $md;
+        }
+
+        &-lg {
+            padding-bottom: $lg;
+        }
+
+        &-xl {
+            padding-bottom: $xl;
+        }
+
+        &-xxl {
+            padding-bottom: $xxl;
+        }
+    }
+
+    &-left {
+        &-none {
+            padding-left: 0;
+        }
+
+        &-xs {
+            padding-left: $xs;
+        }
+
+        &-sm {
+            padding-left: $sm;
+        }
+
+        &-md {
+            padding-left: $md;
+        }
+
+        &-lg {
+            padding-left: $lg;
+        }
+
+        &-xl {
+            padding-left: $xl;
+        }
+
+        &-xxl {
+            padding-left: $xxl;
+        }
+    }
+}
+
+.margin {
+    &-top {
+        &-none {
+            margin-top: 0;
+        }
+
+        &-xs {
+            margin-top: $xs;
+        }
+
+        &-sm {
+            margin-top: $sm;
+        }
+
+        &-md {
+            margin-top: $md;
+        }
+
+        &-lg {
+            margin-top: $lg;
+        }
+
+        &-xl {
+            margin-top: $xl;
+        }
+
+        &-xxl {
+            margin-top: $xxl;
+        }
+    }
+
+    &-right {
+        &-none {
+            margin-right: 0;
+        }
+
+        &-xs {
+            margin-right: $xs;
+        }
+
+        &-sm {
+            margin-right: $sm;
+        }
+
+        &-md {
+            margin-right: $md;
+        }
+
+        &-lg {
+            margin-right: $lg;
+        }
+
+        &-xl {
+            margin-right: $xl;
+        }
+
+        &-xxl {
+            margin-right: $xxl;
+        }
+    }
+
+    &-bottom {
+        &-none {
+            margin-bottom: 0;
+        }
+
+        &-xs {
+            margin-bottom: $xs;
+        }
+
+        &-sm {
+            margin-bottom: $sm;
+        }
+
+        &-md {
+            margin-bottom: $md;
+        }
+
+        &-lg {
+            margin-bottom: $lg;
+        }
+
+        &-xl {
+            margin-bottom: $xl;
+        }
+
+        &-xxl {
+            margin-bottom: $xxl;
+        }
+
+        &-xxxl {
+            margin-bottom: 60px;
+        }
+    }
+
+    &-left {
+        &-none {
+            margin-left: 0;
+        }
+
+        &-xs {
+            margin-left: $xs;
+        }
+
+        &-sm {
+            margin-left: $sm;
+        }
+
+        &-md {
+            margin-left: $md;
+        }
+
+        &-lg {
+            margin-left: $lg;
+        }
+
+        &-xl {
+            margin-left: $xl;
+        }
+
+        &-xxl {
+            margin-left: $xxl;
+        }
+    }
+}
+
+.box-shadow {
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.thank-you .thank-you-title {
+    text-align: center;
+    color: #ff6699;
+}
+
+.thank-you .thank-you-body {
+    text-align: center;
+}
+
+.thank-you .thank-you-signature {
+    text-align: center;
+    color: #ff6699;
+    font-style: italic;
+}
+
+.color-green {
+    color: #008000;
+}
+
+.color-red {
+    color: #FF0000;
+}
+
+.color-black {
+    color: #000;
+}
+
+.color-light-grey {
+    color: #eee;
+}
+
+.center-margin-horizontal {
+    margin: 0 auto;
+}
+
+.no-margin-above {
+    margin-top: 0;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.vertical-align-middle-radio {
+    margin-bottom: 0;
+}
+
+.vertical-align-middle-radio div.radio {
+    margin-top: 0;
+}
+
+.vertical-align-middle-radio div.panel {
+    margin-bottom: 0;
+}
+
+.vertical-align-middle-radio input[type="radio"] {
+    vertical-align: middle;
+    height: 100%;
+}
+
+.booth-size-selection > .panel-body {
+    padding-bottom: 0;
+}
+
+.booth-size-selection > .panel-footer {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 35px;
+}
+
+.booth-size-selection:hover {
+    cursor: pointer;
+    border-color: #F654BB;
+}
+
+.booth-size-selection:hover .panel-heading {
+    background-color: #F654BB;
+    border-color: #F654BB;
+}
+
+.booth-size-selection:hover .panel-body {
+    border-color: #F654BB;
+}
+
+.modal-width-950 {
+    max-width: 950px;
+}
+
+.red-border {
+    border-color: #a94442;
+}
+
+area#conferenceCenterBooths:hover {
+    background-color: #777777;
+}
+
+.block-label {
+    display: block;
+}
+
+.fill-height {
+	min-height: 100%;
+	height: 100%;
+}
+
+.nav-header-title {
+	padding: 5px 0 5px 10px;
+}
+
+.ff-box {
+	background-color: #0000A5;
+	border: 2px solid #808080;
+	border-radius: 2px;
+	padding: 2px 5px 2px 5px;
+	color: #FFF;
+}
+
+.no-border {
+    border: 0;
+}
+
+.table-no-border {
+    border: none !important;
+
+    th, tr, td {
+        border: none !important;
+    }
+}
+
+.top-table {
+	width: 100%;
+	height: auto;
+}
+
+.top-table td {
+	padding: 20px 0 20px 0;
+	background-color: #e4e4e2;
+	border-radius: 10px;
+	text-align: center;
+}
+
+td.booth,
+td.non-interactive-section,
+td.interactive-section {
+    border: 5px solid #FFF;
+}
+
+.bc-background {
+    background-image: url(/img/berry-center.jpg);
+    background-repeat: no-repeat;
+    background-color: #233237;
+}
+
+table.order-summary {
+    margin: 30px auto 50px auto;
+}
+
+table.order-summary td.heading {
+    text-align: left;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.3em;
+    padding-bottom: 10px;
+}
+
+table.order-summary td {
+    text-align: left;
+    color: #000;
+    padding: 0 50px 0 0;
+}
+
+table.order-summary td + td {
+    text-align: right;
+    color: #000;
+    padding: 0 0 0 50px;
+}
+
+table.order-summary td.total-label {
+    color: #984843;
+    font-weight: bold;
+    padding-top: 8px;
+}
+
+table.order-summary td.total-label + td {
+    border-top: 1px solid #c9c9c9;
+    padding-top: 8px;
+}
+
+#mainContainer,
+#loginContainer {
+    z-index: 0;
+}
+
+/* LEFT NAVIGATION BAR */
+.navbar-fixed-left {
+    width: 195px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    // padding: 5px 10px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    border-right: 1px solid #fafafa;
+    background-color: #ff6699;
+
+    .main-ul {
+        width: 100%;
+    }
+
+    .custom-active {
+        color: #173e43;
+        background-color: rgba(238, 238, 238, 1.0);
+    }
+
+    .navbar-nav > li {
+        float: none;  /* Cancel default li float: left */
+        // width: 199px;
+        width: 100%;
+        background-color: inherit;
+    }
+
+    .navbar-nav > li > a {
+        width: 100%;
+        background-color: inherit;
+        color: #eee;
+        padding: 5px 5px 5px 5px;
+        font-weight: normal;
+    }
+
+    .navbar-nav > li > a:hover {
+        background-color: rgba(238, 238, 238, 0.5);
+        color: #173e43;
+    }
+
+    .navbar-nav > li > a:active {
+        background-color: rgba(238, 238, 238, 1.0);
+    }
+
+    .navbar-nav > li.section-title {
+        color: #333333;
+        width: 100%;
+        padding: 5px 0 5px 5px;
+        font-weight: 500;
+    }
+
+    .navbar-nav hr.divider {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+/* END LEFT NAVIGATION BAR */
+
+.main-content-column {
+    padding-right: 10px;
+    padding-left: 205px; /* 195 + 10 */
+}
+
+/* PANEL CUSTOM STYLE */
+.panel-custom {
+    border-color: #ff6699;
+}
+
+.panel-custom .panel-heading {
+    background-color: #ff6699;
+    border-color: #ff6699;
+    color: #444;
+}
+
+/* LUNCH */
+table.lunch {
+    width: 85%;
+    border-collapse: collapse;
+    border-bottom: 1px solid #e4e4e2;
+    margin-bottom: 10px;
+}
+
+table.lunch td,
+table.lunch td + td {
+    padding:  5px 8px 5px 8px;
+}
+
+table.lunch td {
+    width: 80%;
+}
+
+table.lunch td + td {
+    width: 20%;
+    text-align: right;
+}
+
+.table-no-wrap-headers th {
+    width: auto;
+    white-space: nowrap;
+}
+
+.sortable-header {
+    color: blue;
+}
+
+.sortable-header:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.report-table {
+    width: auto;
+
+    // & > thead > tr > th:first-child {
+    //     width: 35% !important;
+    // }
+    th,
+    td,
+    tr {
+        white-space: nowrap;
+    }
+
+    .invoice-table {
+        background-color: transparent;
+        margin-bottom: 5px;
+
+        th,
+        td,
+        tr {
+            padding: 1px !important;
+            border: none !important;
+            background-color: transparent;
+            white-space: nowrap;
+        }
+
+        .qty-price {
+            width: 10% !important;
+            vertical-align: top;
+        }
+
+        .description {
+            width: 80% !important;
+        }
+
+        .electricity {
+            font-style: italic;
+            padding-left: 15px;
+        }
+    
+        .total > td {
+            border-top: 1px solid #ccc;
+            color: #ff6699;
+        }
+    }
+}
+
+.no-width {
+    width: 0;
+}
+
+/* qTip2 class to control width */
+.qtip-custom-width {
+    min-width: 280px;
+    max-width: 400px;
+}
+
+.qtip-table {
+    margin-bottom: 0;
+    font-size: 0.85em;
+}
+
+.qtip-table th {
+    text-align: center;
+    color: #333;
+    background-color: #f5f5f5;
+    /* background-image: linear-gradient(to bottom, #FFFFFF, #e2e2e2); */
+}
+
+.qtip-table td.category {
+    font-style: italic;
+    width: 35%;
+}
+
+.qtip-table td.description {
+    width: 55%;
+}
+
+.qtip-table td.percentage {
+    width: 10%;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.divider-castle {
+    border-radius: 3px;
+    height: 1px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000050+0,8abbd7+50,000080+100&0.88+0,1+100 */
+    background: -moz-linear-gradient(-45deg,  rgba(0,0,80,0.88) 0%, rgba(138,187,215,0.94) 50%, rgba(0,0,128,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  rgba(0,0,80,0.88) 0%,rgba(138,187,215,0.94) 50%,rgba(0,0,128,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  rgba(0,0,80,0.88) 0%,rgba(138,187,215,0.94) 50%,rgba(0,0,128,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0000050', endColorstr='#000080',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+/* SIGN IN FORM */
+.berry-center-background {
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/images/berry-center-front.jpg');
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 100%;
+}
+
+.container-signin {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-color: transparent;
+  height: 100%;
+}
+
+.form-signin-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-signin-img {
+  background-color: #000;
+  padding: 15px 20px 15px 20px;
+  border: none;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 30px;
+  margin: 0 auto;
+  background-color: rgba(148, 148, 148, 0.8);
+  border-radius: 5px;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+  font-weight: normal;
+}
+
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin #username {
+    border-radius: 4px 4px 0 0 !important;
+}
+
+.form-signin #password {
+    border-radius: 0 0 4px 4px !important;
+}
+
+/* misc */
+.custom-list {
+    list-style: none;
+    margin-left: 1em;
+    padding-left: 0;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.show-icon-on-hover {
+    span {
+        visibility: hidden;
+    }
+
+    &:hover span {
+        visibility: visible;
+    }
+}
+
+.pointer-hover {
+    cursor: pointer;
+}
+
+.text-box-no-styling {
+    border: none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.v-align-middle th,
+.v-align-middle td {
+    vertical-align: middle !important;
+}
+
+.vendor-img-wrapper {
+    text-align: center;
+    display: inline-block;
+    position: relative;
+}
+
+.vendor-img-close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.padding-little {
+    padding: 5px;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.width-10 {
+    width: 10%;
+}
+
+.width-50 {
+    width: 50%;
+}
+
+.text-bold {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.left-border-sub-heading {
+	padding-left: 10px;
+    border-left: 4px solid #ff6699;
+    margin: 0;
+}
+
+.map-image-container {
+    position: relative;
+    // margin: 0 auto;
+    -moz-box-shadow: 1px 1px 7px #999;
+    -webkit-box-shadow: 1px 1px 7px #999;
+    box-shadow: 1px 1px 7px #999;
+
+    .booth-area-spot {
+        position: absolute;
+    }
+
+    .booth-area-spot-highlight {
+        opacity: 0.4;
+    }
+
+    .booth-area-spot-vacant:hover {
+        background-color: #888888 !important;
+    }
+
+    a {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.login-container {
+    background-image: url(assets/images/berry-center-front.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
+}
+
+.panel-card { // Gives BS3 panels the look of a BS4 card.
+    border-radius: .25rem;
+    border: 1px solid rgba(0,0,0,.125);
+    box-shadow: none;
+}

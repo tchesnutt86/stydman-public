@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-condensed margin-top-lg v-align-middle table-no-border">
+      <tr>
+        <th class="width-50">Vendor status</th>
+        <td>
+          <select class="form-control" [(ngModel)]="selectedAttendingFlagId">
+            <option *ngFor="let flag of rawAttendingFlags" [value]="flag.id">{{flag.description}}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="text-right pad-top-sm">
+          <span *ngIf="showSaveVendorStatusMessage" class="margin-right-xs color-green">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save successful
+          </span>
+          <app-save-button
+            [savingInProgress]="savingVendorStatusInProgress"
+            (buttonClicked)="saveVendorStatusClicked.emit(selectedAttendingFlagId)">
+          </app-save-button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
